@@ -198,80 +198,79 @@ module.exports = {
 var duration = 300;
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    animateIn: function animateIn(el) {
-        __WEBPACK_IMPORTED_MODULE_0_animejs___default()({
-            targets: el,
-            translateY: '-35px',
-            opacity: 1,
-            duration: duration,
-            easing: 'easeOutCubic'
-        });
-    },
-    animateOut: function animateOut(el, onComplete) {
-        __WEBPACK_IMPORTED_MODULE_0_animejs___default()({
-            targets: el,
-            opacity: 0,
-            marginTop: '-40px',
-            duration: duration,
-            easing: 'easeOutExpo',
-            complete: onComplete
-        });
-    },
-    animateOutBottom: function animateOutBottom(el, onComplete) {
-        __WEBPACK_IMPORTED_MODULE_0_animejs___default()({
-            targets: el,
-            opacity: 0,
-            marginBottom: '-40px',
-            duration: duration,
-            easing: 'easeOutExpo',
-            complete: onComplete
-        });
-    },
-    animateReset: function animateReset(el) {
-        __WEBPACK_IMPORTED_MODULE_0_animejs___default()({
-            targets: el,
-            left: 0,
-            opacity: 1,
-            duration: duration,
-            easing: 'easeOutExpo'
-        });
-    },
-    animatePanning: function animatePanning(el, left, opacity) {
-        __WEBPACK_IMPORTED_MODULE_0_animejs___default()({
-            targets: el,
-            duration: 10,
-            easing: 'easeOutQuad',
-            left: left,
-            opacity: opacity
-        });
-    },
-    animatePanEnd: function animatePanEnd(el, onComplete) {
-        __WEBPACK_IMPORTED_MODULE_0_animejs___default()({
-            targets: el,
-            opacity: 0,
-            duration: duration,
-            easing: 'easeOutExpo',
-            complete: onComplete
-        });
-    },
-    clearAnimation: function clearAnimation(toasts) {
+  animateIn: function animateIn(el) {
+    __WEBPACK_IMPORTED_MODULE_0_animejs___default()({
+      targets: el,
+      translateY: "-35px",
+      opacity: 1,
+      duration: duration,
+      easing: "easeOutCubic"
+    });
+  },
+  animateOut: function animateOut(el, onComplete) {
+    __WEBPACK_IMPORTED_MODULE_0_animejs___default()({
+      targets: el,
+      opacity: 0,
+      marginTop: "-40px",
+      duration: duration,
+      easing: "easeOutExpo",
+      complete: onComplete
+    });
+  },
+  animateOutBottom: function animateOutBottom(el, onComplete) {
+    __WEBPACK_IMPORTED_MODULE_0_animejs___default()({
+      targets: el,
+      opacity: 0,
+      marginBottom: "-40px",
+      duration: duration,
+      easing: "easeOutExpo",
+      complete: onComplete
+    });
+  },
+  animateReset: function animateReset(el) {
+    __WEBPACK_IMPORTED_MODULE_0_animejs___default()({
+      targets: el,
+      left: 0,
+      opacity: 1,
+      duration: duration,
+      easing: "easeOutExpo"
+    });
+  },
+  animatePanning: function animatePanning(el, left, opacity) {
+    __WEBPACK_IMPORTED_MODULE_0_animejs___default()({
+      targets: el,
+      duration: 10,
+      easing: "easeOutQuad",
+      left: left,
+      opacity: opacity
+    });
+  },
+  animatePanEnd: function animatePanEnd(el, onComplete) {
+    __WEBPACK_IMPORTED_MODULE_0_animejs___default()({
+      targets: el,
+      opacity: 0,
+      duration: duration,
+      easing: "easeOutExpo",
+      complete: onComplete
+    });
+  },
+  clearAnimation: function clearAnimation(toasts) {
+    var timeline = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a.timeline();
 
-        var timeline = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a.timeline();
-
-        toasts.forEach(function (t) {
-            timeline.add({
-                targets: t.el,
-                opacity: 0,
-                right: '-40px',
-                duration: 300,
-                offset: '-=150',
-                easing: 'easeOutExpo',
-                complete: function complete() {
-                    t.remove();
-                }
-            });
-        });
-    }
+    toasts.forEach(function (t) {
+      timeline.add({
+        targets: t.el,
+        opacity: 0,
+        right: "-40px",
+        duration: 300,
+        offset: "-=150",
+        easing: "easeOutExpo",
+        complete: function complete() {
+          t.remove();
+        }
+      });
+    });
+  }
 });
 
 /***/ }),
@@ -311,164 +310,163 @@ __webpack_require__(8).polyfill();
  * @constructor
  */
 var Toasted = function Toasted(_options) {
-	var _this = this;
+  var _this = this;
 
-	/**
-  * Unique id of the toast
-  */
-	this.id = uuid.generate();
+  /**
+   * Unique id of the toast
+   */
+  this.id = uuid.generate();
 
-	/**
-  * Shared Options of the Toast
-  */
-	this.options = _options;
+  /**
+   * Shared Options of the Toast
+   */
+  this.options = _options;
 
-	/**
-  * Cached Options of the Toast
-  */
-	this.cached_options = {};
+  /**
+   * Cached Options of the Toast
+   */
+  this.cached_options = {};
 
-	/**
-  * Shared Toasts list
-  */
-	this.global = {};
+  /**
+   * Shared Toasts list
+   */
+  this.global = {};
 
-	/**
-  * All Registered Groups
-  */
-	this.groups = [];
+  /**
+   * All Registered Groups
+   */
+  this.groups = [];
 
-	/**
-  * All Registered Toasts
-  */
-	this.toasts = [];
+  /**
+   * All Registered Toasts
+   */
+  this.toasts = [];
 
-	/**
-  * Element of the Toast Container
-  */
-	this.container = null;
+  /**
+   * Element of the Toast Container
+   */
+  this.container = null;
 
-	/**
-  * Initiate toast container
-  */
-	initiateToastContainer(this);
+  /**
+   * Initiate toast container
+   */
+  initiateToastContainer(this);
 
-	/**
-  * Initiate custom toasts
-  */
-	initiateCustomToasts(this);
+  /**
+   * Initiate custom toasts
+   */
+  initiateCustomToasts(this);
 
-	/**
-  * Create New Group of Toasts
-  *
-  * @param o
-  */
-	this.group = function (o) {
+  /**
+   * Create New Group of Toasts
+   *
+   * @param o
+   */
+  this.group = function (o) {
+    if (!o) o = {};
 
-		if (!o) o = {};
+    if (!o.globalToasts) {
+      o.globalToasts = {};
+    }
 
-		if (!o.globalToasts) {
-			o.globalToasts = {};
-		}
+    // share parents global toasts
+    Object.assign(o.globalToasts, _this.global);
 
-		// share parents global toasts
-		Object.assign(o.globalToasts, _this.global);
+    // tell parent about the group
+    var group = new Toasted(o);
+    _this.groups.push(group);
 
-		// tell parent about the group
-		var group = new Toasted(o);
-		_this.groups.push(group);
+    return group;
+  };
 
-		return group;
-	};
+  /**
+   * Register a Global Toast
+   *
+   * @param name
+   * @param payload
+   * @param options
+   */
+  this.register = function (name, payload, options) {
+    options = options || {};
+    return register(_this, name, payload, options);
+  };
 
-	/**
-  * Register a Global Toast
-  *
-  * @param name
-  * @param payload
-  * @param options
-  */
-	this.register = function (name, payload, options) {
-		options = options || {};
-		return register(_this, name, payload, options);
-	};
+  /**
+   * Show a Simple Toast
+   *
+   * @param message
+   * @param options
+   * @returns {*}
+   */
+  this.show = function (message, options) {
+    return _show(_this, message, options);
+  };
 
-	/**
-  * Show a Simple Toast
-  *
-  * @param message
-  * @param options
-  * @returns {*}
-  */
-	this.show = function (message, options) {
-		return _show(_this, message, options);
-	};
+  /**
+   * Show a Toast with Success Style
+   *
+   * @param message
+   * @param options
+   * @returns {*}
+   */
+  this.success = function (message, options) {
+    options = options || {};
+    options.type = "success";
+    return _show(_this, message, options);
+  };
 
-	/**
-  * Show a Toast with Success Style
-  *
-  * @param message
-  * @param options
-  * @returns {*}
-  */
-	this.success = function (message, options) {
-		options = options || {};
-		options.type = "success";
-		return _show(_this, message, options);
-	};
+  /**
+   * Show a Toast with Info Style
+   *
+   * @param message
+   * @param options
+   * @returns {*}
+   */
+  this.info = function (message, options) {
+    options = options || {};
+    options.type = "info";
+    return _show(_this, message, options);
+  };
 
-	/**
-  * Show a Toast with Info Style
-  *
-  * @param message
-  * @param options
-  * @returns {*}
-  */
-	this.info = function (message, options) {
-		options = options || {};
-		options.type = "info";
-		return _show(_this, message, options);
-	};
+  /**
+   * Show a Toast with Error Style
+   *
+   * @param message
+   * @param options
+   * @returns {*}
+   */
+  this.error = function (message, options) {
+    options = options || {};
+    options.type = "error";
+    return _show(_this, message, options);
+  };
 
-	/**
-  * Show a Toast with Error Style
-  *
-  * @param message
-  * @param options
-  * @returns {*}
-  */
-	this.error = function (message, options) {
-		options = options || {};
-		options.type = "error";
-		return _show(_this, message, options);
-	};
+  /**
+   * Remove a Toast
+   * @param el
+   */
+  this.remove = function (el) {
+    _this.toasts = _this.toasts.filter(function (t) {
+      return t.el.hash !== el.hash;
+    });
+    if (el.parentNode) el.parentNode.removeChild(el);
+  };
 
-	/**
-  * Remove a Toast
-  * @param el
-  */
-	this.remove = function (el) {
-		_this.toasts = _this.toasts.filter(function (t) {
-			return t.el.hash !== el.hash;
-		});
-		if (el.parentNode) el.parentNode.removeChild(el);
-	};
+  /**
+   * Clear All Toasts
+   *
+   * @returns {boolean}
+   */
+  this.clear = function (onClear) {
+    __WEBPACK_IMPORTED_MODULE_1__animations__["a" /* default */].clearAnimation(_this.toasts, function () {
+      onClear && onClear();
+    });
+    _this.toasts = [];
 
-	/**
-  * Clear All Toasts
-  *
-  * @returns {boolean}
-  */
-	this.clear = function (onClear) {
-		__WEBPACK_IMPORTED_MODULE_1__animations__["a" /* default */].clearAnimation(_this.toasts, function () {
-			onClear && onClear();
-		});
-		_this.toasts = [];
+    return true;
+  };
 
-		return true;
-	};
-
-	return this;
+  return this;
 };
 
 /**
@@ -481,103 +479,96 @@ var Toasted = function Toasted(_options) {
  * @private
  */
 var _show = function _show(instance, message, options) {
-	options = options || {};
-	var toast = null;
+  options = options || {};
+  var toast = null;
 
-	if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) !== "object") {
-		console.error("Options should be a type of object. given : " + options);
-		return null;
-	}
+  if ((typeof options === "undefined" ? "undefined" : _typeof(options)) !== "object") {
+    console.error("Options should be a type of object. given : " + options);
+    return null;
+  }
 
-	// singleton feature
-	if (instance.options.singleton && instance.toasts.length > 0) {
-		instance.cached_options = options;
-		instance.toasts[instance.toasts.length - 1].goAway(0);
-	}
+  // singleton feature
+  if (instance.options.singleton && instance.toasts.length > 0) {
+    instance.cached_options = options;
+    instance.toasts[instance.toasts.length - 1].goAway(0);
+  }
 
-	// clone the global options
-	var _options = Object.assign({}, instance.options);
+  // clone the global options
+  var _options = Object.assign({}, instance.options);
 
-	// merge the cached global options with options
-	Object.assign(_options, options);
+  // merge the cached global options with options
+  Object.assign(_options, options);
 
-	toast = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__show__["a" /* default */])(instance, message, _options);
-	instance.toasts.push(toast);
+  toast = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__show__["a" /* default */])(instance, message, _options);
+  instance.toasts.push(toast);
 
-	return toast;
+  return toast;
 };
 
 /**
  * Register the Custom Toasts
  */
 var initiateCustomToasts = function initiateCustomToasts(instance) {
+  var customToasts = instance.options.globalToasts;
 
-	var customToasts = instance.options.globalToasts;
+  // this will initiate toast for the custom toast.
+  var initiate = function initiate(message, options) {
+    // check if passed option is a available method if so call it.
+    if (typeof options === "string" && instance[options]) {
+      return instance[options].apply(instance, [message, {}]);
+    }
 
-	// this will initiate toast for the custom toast.
-	var initiate = function initiate(message, options) {
+    // or else create a new toast with passed options.
+    return _show(instance, message, options);
+  };
 
-		// check if passed option is a available method if so call it.
-		if (typeof options === 'string' && instance[options]) {
-			return instance[options].apply(instance, [message, {}]);
-		}
+  if (customToasts) {
+    instance.global = {};
 
-		// or else create a new toast with passed options.
-		return _show(instance, message, options);
-	};
+    Object.keys(customToasts).forEach(function (key) {
+      // register the custom toast events to the Toast.custom property
+      instance.global[key] = function () {
+        var payload = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-	if (customToasts) {
-
-		instance.global = {};
-
-		Object.keys(customToasts).forEach(function (key) {
-
-			// register the custom toast events to the Toast.custom property
-			instance.global[key] = function () {
-				var payload = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-
-				//console.log(payload);
-				// return the it in order to expose the Toast methods
-				return customToasts[key].apply(null, [payload, initiate]);
-			};
-		});
-	}
+        //console.log(payload);
+        // return the it in order to expose the Toast methods
+        return customToasts[key].apply(null, [payload, initiate]);
+      };
+    });
+  }
 };
 
 var initiateToastContainer = function initiateToastContainer(instance) {
-	// create notification container
-	var container = document.createElement('div');
-	container.id = instance.id;
-	container.setAttribute('role', 'status');
-	container.setAttribute('aria-live', 'polite');
-	container.setAttribute('aria-atomic', 'false');
+  // create notification container
+  var container = document.createElement("div");
+  container.id = instance.id;
+  container.setAttribute("role", "status");
+  container.setAttribute("aria-live", "polite");
+  container.setAttribute("aria-atomic", "false");
 
-	document.body.appendChild(container);
-	instance.container = container;
+  document.body.appendChild(container);
+  instance.container = container;
 };
 
 var register = function register(instance, name, callback, options) {
+  !instance.options.globalToasts ? instance.options.globalToasts = {} : null;
 
-	!instance.options.globalToasts ? instance.options.globalToasts = {} : null;
+  instance.options.globalToasts[name] = function (payload, initiate) {
+    // if call back is string we will keep it that way..
+    var message = null;
 
-	instance.options.globalToasts[name] = function (payload, initiate) {
+    if (typeof callback === "string") {
+      message = callback;
+    }
 
-		// if call back is string we will keep it that way..
-		var message = null;
+    if (typeof callback === "function") {
+      message = callback(payload);
+    }
 
-		if (typeof callback === 'string') {
-			message = callback;
-		}
+    return initiate(message, options);
+  };
 
-		if (typeof callback === 'function') {
-			message = callback(payload);
-		}
-
-		return initiate(message, options);
-	};
-
-	initiateCustomToasts(instance);
+  initiateCustomToasts(instance);
 };
 
 /* unused harmony default export */ var _unused_webpack_default_export = ({ Toasted: Toasted });
@@ -634,8 +625,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 // register plugin if it is used via cdn or directly as a script tag
-if (typeof window !== 'undefined') {
-	window.Toasted = __WEBPACK_IMPORTED_MODULE_0__js_toast__["a" /* Toasted */];
+if (typeof window !== "undefined") {
+  window.Toasted = __WEBPACK_IMPORTED_MODULE_0__js_toast__["a" /* Toasted */];
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0__js_toast__["a" /* Toasted */]);
@@ -657,60 +648,58 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 // fade the toast away
 var _goAway = function _goAway(el, delay, instance) {
+  // Animate toast out
+  setTimeout(function () {
+    // if the toast is on bottom set it as bottom animation
+    if (instance.cached_options.position && instance.cached_options.position.includes("bottom")) {
+      __WEBPACK_IMPORTED_MODULE_0__animations_js__["a" /* default */].animateOutBottom(el, function () {
+        instance.remove(el);
+      });
+      return;
+    }
 
-    // Animate toast out
-    setTimeout(function () {
+    __WEBPACK_IMPORTED_MODULE_0__animations_js__["a" /* default */].animateOut(el, function () {
+      instance.remove(el);
+    });
+  }, delay);
 
-        // if the toast is on bottom set it as bottom animation
-        if (instance.cached_options.position && instance.cached_options.position.includes('bottom')) {
-            __WEBPACK_IMPORTED_MODULE_0__animations_js__["a" /* default */].animateOutBottom(el, function () {
-                instance.remove(el);
-            });
-            return;
-        }
-
-        __WEBPACK_IMPORTED_MODULE_0__animations_js__["a" /* default */].animateOut(el, function () {
-            instance.remove(el);
-        });
-    }, delay);
-
-    return true;
+  return true;
 };
 
 // change the text of toast
 
 var changeText = function changeText(el, text) {
-    if ((typeof HTMLElement === 'undefined' ? 'undefined' : _typeof(HTMLElement)) === "object" ? text instanceof HTMLElement : text && (typeof text === 'undefined' ? 'undefined' : _typeof(text)) === "object" && text !== null && text.nodeType === 1 && typeof text.nodeName === "string") {
-        el.appendChild(text);
-    } else {
-        el.innerHTML = text;
-    }
+  if ((typeof HTMLElement === "undefined" ? "undefined" : _typeof(HTMLElement)) === "object" ? text instanceof HTMLElement : text && (typeof text === "undefined" ? "undefined" : _typeof(text)) === "object" && text !== null && text.nodeType === 1 && typeof text.nodeName === "string") {
+    el.appendChild(text);
+  } else {
+    el.innerHTML = text;
+  }
 
-    return _this;
+  return _this;
 };
 
 var toastObject = function toastObject(el, instance) {
-    var _disposed = false;
+  var _disposed = false;
 
-    return {
-        el: el,
-        text: function text(_text) {
-            changeText(el, _text);
-            return this;
-        },
-        goAway: function goAway() {
-            var delay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 800;
+  return {
+    el: el,
+    text: function text(_text) {
+      changeText(el, _text);
+      return this;
+    },
+    goAway: function goAway() {
+      var delay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 800;
 
-            _disposed = true;
-            return _goAway(el, delay, instance);
-        },
-        remove: function remove() {
-            instance.remove(el);
-        },
-        disposed: function disposed() {
-            return _disposed;
-        }
-    };
+      _disposed = true;
+      return _goAway(el, delay, instance);
+    },
+    remove: function remove() {
+      instance.remove(el);
+    },
+    disposed: function disposed() {
+      return _disposed;
+    }
+  };
 };
 
 /***/ }),
@@ -724,6 +713,8 @@ var toastObject = function toastObject(el, instance) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__object__ = __webpack_require__(6);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 
 
 
@@ -731,19 +722,19 @@ var uuid = __webpack_require__(2);
 
 // string includes polyfill
 if (!String.prototype.includes) {
-	Object.defineProperty(String.prototype, 'includes', {
-		value: function value(search, start) {
-			if (typeof start !== 'number') {
-				start = 0;
-			}
+  Object.defineProperty(String.prototype, "includes", {
+    value: function value(search, start) {
+      if (typeof start !== "number") {
+        start = 0;
+      }
 
-			if (start + search.length > this.length) {
-				return false;
-			} else {
-				return this.indexOf(search, start) !== -1;
-			}
-		}
-	});
+      if (start + search.length > this.length) {
+        return false;
+      } else {
+        return this.indexOf(search, start) !== -1;
+      }
+    }
+  });
 }
 
 var _options = {};
@@ -755,245 +746,241 @@ var _instance = null;
  * @returns {{el: *, text: text, goAway: goAway}}
  */
 var parseOptions = function parseOptions(options) {
+  // class name to be added on the toast
+  options.className = options.className || null;
 
-	// class name to be added on the toast
-	options.className = options.className || null;
+  // complete call back of the toast
+  options.onComplete = options.onComplete || null;
 
-	// complete call back of the toast
-	options.onComplete = options.onComplete || null;
+  // toast position
+  options.position = options.position || "top-right";
 
-	// toast position
-	options.position = options.position || "top-right";
+  // toast duration
+  options.duration = options.duration || null;
 
-	// toast duration
-	options.duration = options.duration || null;
+  // keep toast open on mouse over
+  options.keepOnHover = options.keepOnHover || false;
 
-	// keep toast open on mouse over
-	options.keepOnHover = options.keepOnHover || false;
+  // normal type will allow the basic color
+  options.type = options.type || "default";
 
-	// normal type will allow the basic color
-	options.theme = options.theme || "toasted-primary";
+  // class name for separate type
+  options.typeClassName = options.typeClassName || {
+    default: "default",
+    error: "error",
+    success: "success",
+    info: "info"
+  };
 
-	// normal type will allow the basic color
-	options.type = options.type || "default";
+  // class name to be added on the toast container
+  options.containerClass = options.containerClass || null;
 
-	// class name to be added on the toast container
-	options.containerClass = options.containerClass || null;
+  // check if the fullWidth is enabled
+  options.fullWidth = options.fullWidth || false;
 
-	// check if the fullWidth is enabled
-	options.fullWidth = options.fullWidth || false;
+  // get icon name
+  options.icon = options.icon || null;
 
-	// get icon name
-	options.icon = options.icon || null;
+  // get action name
+  options.action = options.action || null;
 
-	// get action name
-	options.action = options.action || null;
+  // check if the toast needs to be fitted in the screen (no margin gap between screen)
+  options.fitToScreen = options.fitToScreen || null;
 
-	// check if the toast needs to be fitted in the screen (no margin gap between screen)
-	options.fitToScreen = options.fitToScreen || null;
+  // check if closes the toast when the user swipes it
+  options.closeOnSwipe = typeof options.closeOnSwipe !== "undefined" ? options.closeOnSwipe : true;
 
-	// check if closes the toast when the user swipes it
-	options.closeOnSwipe = typeof options.closeOnSwipe !== 'undefined' ? options.closeOnSwipe : true;
+  // get the icon pack name. defaults to material
+  options.iconPack = options.iconPack || "material";
 
-	// get the icon pack name. defaults to material
-	options.iconPack = options.iconPack || 'material';
+  /* transform options */
 
-	/* transform options */
+  // toast class
+  if (options.className && typeof options.className === "string") {
+    options.className = options.className.split(" ");
+  }
 
-	// toast class
-	if (options.className && typeof options.className === "string") {
-		options.className = options.className.split(' ');
-	}
+  if (!options.className) {
+    options.className = [];
+  }
 
-	if (!options.className) {
-		options.className = [];
-	}
+  options.type && options.className.push(options.typeClassName[options.type]);
 
-	options.theme && options.className.push(options.theme.trim());
-	options.type && options.className.push(options.type);
+  // toast container class
+  if (options.containerClass && typeof options.containerClass === "string") {
+    options.containerClass = options.containerClass.split(" ");
+  }
 
-	// toast container class
-	if (options.containerClass && typeof options.containerClass === "string") {
-		options.containerClass = options.containerClass.split(' ');
-	}
+  if (!options.containerClass) {
+    options.containerClass = [];
+  }
 
-	if (!options.containerClass) {
-		options.containerClass = [];
-	}
+  options.position && options.containerClass.push(options.position.trim());
+  options.fullWidth && options.containerClass.push("full-width");
+  options.fitToScreen && options.containerClass.push("fit-to-screen");
 
-	options.position && options.containerClass.push(options.position.trim());
-	options.fullWidth && options.containerClass.push('full-width');
-	options.fitToScreen && options.containerClass.push('fit-to-screen');
-
-	_options = options;
-	return options;
+  _options = options;
+  return options;
 };
 
 var createToast = function createToast(html, options) {
+  // Create toast
+  var toast = document.createElement("div");
+  toast.classList.add("toasted");
 
-	// Create toast
-	var toast = document.createElement('div');
-	toast.classList.add('toasted');
+  // set unique identifier
+  toast.hash = uuid.generate();
 
-	// set unique identifier
-	toast.hash = uuid.generate();
+  if (options.className) {
+    options.className.forEach(function (className) {
+      var _toast$classList;
 
-	if (options.className) {
-		options.className.forEach(function (className) {
-			toast.classList.add(className);
-		});
-	}
+      (_toast$classList = toast.classList).add.apply(_toast$classList, _toConsumableArray(className.split(" ")));
+    });
+  }
 
-	// If type of parameter is HTML Element
-	if ((typeof HTMLElement === 'undefined' ? 'undefined' : _typeof(HTMLElement)) === "object" ? html instanceof HTMLElement : html && (typeof html === 'undefined' ? 'undefined' : _typeof(html)) === "object" && html !== null && html.nodeType === 1 && typeof html.nodeName === "string") {
-		toast.appendChild(html);
-	} else {
-		// Insert as text;
-		toast.innerHTML = html;
-	}
+  // If type of parameter is HTML Element
+  if ((typeof HTMLElement === "undefined" ? "undefined" : _typeof(HTMLElement)) === "object" ? html instanceof HTMLElement : html && (typeof html === "undefined" ? "undefined" : _typeof(html)) === "object" && html !== null && html.nodeType === 1 && typeof html.nodeName === "string") {
+    toast.appendChild(html);
+  } else {
+    // Insert as text;
+    toast.innerHTML = html;
+  }
 
-	// add material icon if available
-	createIcon(options, toast);
+  // add material icon if available
+  createIcon(options, toast);
 
-	if (options.closeOnSwipe) {
-		// Bind hammer
-		var hammerHandler = new __WEBPACK_IMPORTED_MODULE_0_hammerjs___default.a(toast, { prevent_default: false });
-		hammerHandler.on('pan', function (e) {
-			var deltaX = e.deltaX;
-			var activationDistance = 80;
+  if (options.closeOnSwipe) {
+    // Bind hammer
+    var hammerHandler = new __WEBPACK_IMPORTED_MODULE_0_hammerjs___default.a(toast, { prevent_default: false });
+    hammerHandler.on("pan", function (e) {
+      var deltaX = e.deltaX;
+      var activationDistance = 80;
 
-			// Change toast state
-			if (!toast.classList.contains('panning')) {
-				toast.classList.add('panning');
-			}
+      // Change toast state
+      if (!toast.classList.contains("panning")) {
+        toast.classList.add("panning");
+      }
 
-			var opacityPercent = 1 - Math.abs(deltaX / activationDistance);
-			if (opacityPercent < 0) opacityPercent = 0;
+      var opacityPercent = 1 - Math.abs(deltaX / activationDistance);
+      if (opacityPercent < 0) opacityPercent = 0;
 
-			__WEBPACK_IMPORTED_MODULE_1__animations__["a" /* default */].animatePanning(toast, deltaX, opacityPercent);
-		});
+      __WEBPACK_IMPORTED_MODULE_1__animations__["a" /* default */].animatePanning(toast, deltaX, opacityPercent);
+    });
 
-		hammerHandler.on('panend', function (e) {
-			var deltaX = e.deltaX;
-			var activationDistance = 80;
+    hammerHandler.on("panend", function (e) {
+      var deltaX = e.deltaX;
+      var activationDistance = 80;
 
-			// If toast dragged past activation point
-			if (Math.abs(deltaX) > activationDistance) {
+      // If toast dragged past activation point
+      if (Math.abs(deltaX) > activationDistance) {
+        __WEBPACK_IMPORTED_MODULE_1__animations__["a" /* default */].animatePanEnd(toast, function () {
+          if (typeof options.onComplete === "function") {
+            options.onComplete();
+          }
 
-				__WEBPACK_IMPORTED_MODULE_1__animations__["a" /* default */].animatePanEnd(toast, function () {
-					if (typeof options.onComplete === "function") {
-						options.onComplete();
-					}
+          if (toast.parentNode) {
+            _instance.remove(toast);
+          }
+        });
+      } else {
+        toast.classList.remove("panning");
+        // Put toast back into original position
+        __WEBPACK_IMPORTED_MODULE_1__animations__["a" /* default */].animateReset(toast);
+      }
+    });
+  }
 
-					if (toast.parentNode) {
-						_instance.remove(toast);
-					}
-				});
-			} else {
-				toast.classList.remove('panning');
-				// Put toast back into original position
-				__WEBPACK_IMPORTED_MODULE_1__animations__["a" /* default */].animateReset(toast);
-			}
-		});
-	}
+  // create and append actions
+  if (Array.isArray(options.action)) {
+    options.action.forEach(function (action) {
+      var el = createAction(action, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__object__["a" /* toastObject */])(toast, _instance));
+      if (el) toast.appendChild(el);
+    });
+  } else if (_typeof(options.action) === "object") {
+    var action = createAction(options.action, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__object__["a" /* toastObject */])(toast, _instance));
+    if (action) toast.appendChild(action);
+  }
 
-	// create and append actions
-	if (Array.isArray(options.action)) {
-		options.action.forEach(function (action) {
-			var el = createAction(action, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__object__["a" /* toastObject */])(toast, _instance));
-			if (el) toast.appendChild(el);
-		});
-	} else if (_typeof(options.action) === 'object') {
-		var action = createAction(options.action, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__object__["a" /* toastObject */])(toast, _instance));
-		if (action) toast.appendChild(action);
-	}
-
-	return toast;
+  return toast;
 };
 
 var createIcon = function createIcon(options, toast) {
+  // add material icon if available
+  if (options.icon) {
+    var iel = document.createElement("i");
+    iel.setAttribute("aria-hidden", "true");
 
-	// add material icon if available
-	if (options.icon) {
+    switch (options.iconPack) {
+      case "fontawesome":
+        iel.classList.add("fa");
 
-		var iel = document.createElement('i');
-		iel.setAttribute('aria-hidden', 'true');
+        var faName = options.icon.name ? options.icon.name : options.icon;
 
-		switch (options.iconPack) {
-			case 'fontawesome':
+        if (faName.includes("fa-")) {
+          iel.classList.add(faName.trim());
+        } else {
+          iel.classList.add("fa-" + faName.trim());
+        }
 
-				iel.classList.add('fa');
+        break;
+      case "mdi":
+        iel.classList.add("mdi");
 
-				var faName = options.icon.name ? options.icon.name : options.icon;
+        var mdiName = options.icon.name ? options.icon.name : options.icon;
 
-				if (faName.includes('fa-')) {
-					iel.classList.add(faName.trim());
-				} else {
-					iel.classList.add('fa-' + faName.trim());
-				}
+        if (mdiName.includes("mdi-")) {
+          iel.classList.add(mdiName.trim());
+        } else {
+          iel.classList.add("mdi-" + mdiName.trim());
+        }
 
-				break;
-			case 'mdi':
+        break;
+      case "custom-class":
+        var classes = options.icon.name ? options.icon.name : options.icon;
 
-				iel.classList.add('mdi');
+        if (typeof classes === "string") {
+          classes.split(" ").forEach(function (className) {
+            iel.classList.add(className);
+          });
+        } else if (Array.isArray(classes)) {
+          classes.forEach(function (className) {
+            iel.classList.add(className.trim());
+          });
+        }
 
-				var mdiName = options.icon.name ? options.icon.name : options.icon;
+        break;
+      case "callback":
+        var callback = options.icon && options.icon instanceof Function ? options.icon : null;
 
-				if (mdiName.includes('mdi-')) {
-					iel.classList.add(mdiName.trim());
-				} else {
-					iel.classList.add('mdi-' + mdiName.trim());
-				}
+        if (callback) {
+          iel = callback(iel);
+        }
 
-				break;
-			case 'custom-class':
+        break;
+      default:
+        iel.classList.add("material-icons");
+        iel.textContent = options.icon.name ? options.icon.name : options.icon;
+    }
 
-				var classes = options.icon.name ? options.icon.name : options.icon;
+    if (options.icon.after) {
+      iel.classList.add("after");
+    }
 
-				if (typeof classes === 'string') {
-					classes.split(' ').forEach(function (className) {
-						iel.classList.add(className);
-					});
-				} else if (Array.isArray(classes)) {
-					classes.forEach(function (className) {
-						iel.classList.add(className.trim());
-					});
-				}
-
-				break;
-			case 'callback':
-				var callback = options.icon && options.icon instanceof Function ? options.icon : null;
-
-				if (callback) {
-					iel = callback(iel);
-				}
-
-				break;
-			default:
-				iel.classList.add('material-icons');
-				iel.textContent = options.icon.name ? options.icon.name : options.icon;
-		}
-
-		if (options.icon.after) {
-			iel.classList.add('after');
-		}
-
-		appendIcon(options, iel, toast);
-	}
+    appendIcon(options, iel, toast);
+  }
 };
 
 var appendIcon = function appendIcon(options, el, toast) {
-
-	if (options.icon) {
-
-		if (options.icon.after && options.icon.name) {
-			toast.appendChild(el);
-		} else if (options.icon.name) {
-			toast.insertBefore(el, toast.firstChild);
-		} else {
-			toast.insertBefore(el, toast.firstChild);
-		}
-	}
+  if (options.icon) {
+    if (options.icon.after && options.icon.name) {
+      toast.appendChild(el);
+    } else if (options.icon.name) {
+      toast.insertBefore(el, toast.firstChild);
+    } else {
+      toast.insertBefore(el, toast.firstChild);
+    }
+  }
 };
 
 /**
@@ -1004,123 +991,117 @@ var appendIcon = function appendIcon(options, el, toast) {
  * @returns {Element}
  */
 var createAction = function createAction(action, toastObject) {
+  if (!action) {
+    return null;
+  }
 
-	if (!action) {
-		return null;
-	}
+  var el = document.createElement("a");
+  el.classList.add("action");
+  el.classList.add("ripple");
 
-	var el = document.createElement('a');
-	el.classList.add('action');
-	el.classList.add('ripple');
+  if (action.text) {
+    el.text = action.text;
+  }
 
-	if (action.text) {
-		el.text = action.text;
-	}
+  if (action.href) {
+    el.href = action.href;
+  }
 
-	if (action.href) {
-		el.href = action.href;
-	}
+  if (action.target) {
+    el.target = action.target;
+  }
 
-	if (action.target) {
-		el.target = action.target;
-	}
+  if (action.icon) {
+    // add icon class to style it
+    el.classList.add("icon");
 
-	if (action.icon) {
+    // create icon element
+    var iel = document.createElement("i");
 
-		// add icon class to style it
-		el.classList.add('icon');
+    switch (_options.iconPack) {
+      case "fontawesome":
+        iel.classList.add("fa");
 
-		// create icon element
-		var iel = document.createElement('i');
+        if (action.icon.includes("fa-")) {
+          iel.classList.add(action.icon.trim());
+        } else {
+          iel.classList.add("fa-" + action.icon.trim());
+        }
 
-		switch (_options.iconPack) {
-			case 'fontawesome':
-				iel.classList.add('fa');
+        break;
+      case "mdi":
+        iel.classList.add("mdi");
 
-				if (action.icon.includes('fa-')) {
-					iel.classList.add(action.icon.trim());
-				} else {
-					iel.classList.add('fa-' + action.icon.trim());
-				}
+        if (action.icon.includes("mdi-")) {
+          iel.classList.add(action.icon.trim());
+        } else {
+          iel.classList.add("mdi-" + action.icon.trim());
+        }
 
-				break;
-			case 'mdi':
-				iel.classList.add('mdi');
+        break;
+      case "custom-class":
+        if (typeof action.icon === "string") {
+          action.icon.split(" ").forEach(function (className) {
+            el.classList.add(className);
+          });
+        } else if (Array.isArray(action.icon)) {
+          action.icon.forEach(function (className) {
+            el.classList.add(className.trim());
+          });
+        }
 
-				if (action.icon.includes('mdi-')) {
-					iel.classList.add(action.icon.trim());
-				} else {
-					iel.classList.add('mdi-' + action.icon.trim());
-				}
+        break;
+      default:
+        iel.classList.add("material-icons");
+        iel.textContent = action.icon;
+    }
 
-				break;
-			case 'custom-class':
+    // append it to the button
+    el.appendChild(iel);
+  }
 
-				if (typeof action.icon === 'string') {
-					action.icon.split(' ').forEach(function (className) {
-						el.classList.add(className);
-					});
-				} else if (Array.isArray(action.icon)) {
-					action.icon.forEach(function (className) {
-						el.classList.add(className.trim());
-					});
-				}
+  if (action.class) {
+    if (typeof action.class === "string") {
+      action.class.split(" ").forEach(function (className) {
+        el.classList.add(className);
+      });
+    } else if (Array.isArray(action.class)) {
+      action.class.forEach(function (className) {
+        el.classList.add(className.trim());
+      });
+    }
+  }
 
-				break;
-			default:
-				iel.classList.add('material-icons');
-				iel.textContent = action.icon;
-		}
+  // initiate push with ready
+  if (action.push) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
 
-		// append it to the button
-		el.appendChild(iel);
-	}
+      // check if vue router passed through global options
+      if (!_options.router) {
+        console.warn("[vue-toasted] : Vue Router instance is not attached. please check the docs");
+        return;
+      }
 
-	if (action.class) {
+      _options.router.push(action.push);
 
-		if (typeof action.class === 'string') {
-			action.class.split(' ').forEach(function (className) {
-				el.classList.add(className);
-			});
-		} else if (Array.isArray(action.class)) {
-			action.class.forEach(function (className) {
-				el.classList.add(className.trim());
-			});
-		}
-	}
+      // fade away toast after action.
+      if (!action.push.dontClose) {
+        toastObject.goAway(0);
+      }
+    });
+  }
 
-	// initiate push with ready
-	if (action.push) {
+  if (action.onClick && typeof action.onClick === "function") {
+    el.addEventListener("click", function (e) {
+      if (action.onClick) {
+        e.preventDefault();
+        action.onClick(e, toastObject);
+      }
+    });
+  }
 
-		el.addEventListener('click', function (e) {
-			e.preventDefault();
-
-			// check if vue router passed through global options
-			if (!_options.router) {
-				console.warn('[vue-toasted] : Vue Router instance is not attached. please check the docs');
-				return;
-			}
-
-			_options.router.push(action.push);
-
-			// fade away toast after action.
-			if (!action.push.dontClose) {
-				toastObject.goAway(0);
-			}
-		});
-	}
-
-	if (action.onClick && typeof action.onClick === 'function') {
-		el.addEventListener('click', function (e) {
-
-			if (action.onClick) {
-				e.preventDefault();
-				action.onClick(e, toastObject);
-			}
-		});
-	}
-
-	return el;
+  return el;
 };
 
 /**
@@ -1132,82 +1113,80 @@ var createAction = function createAction(action, toastObject) {
  * @returns {{el: *, text: text, goAway: goAway}}
  */
 /* harmony default export */ __webpack_exports__["a"] = (function (instance, message, options) {
+  // share the instance across
+  _instance = instance;
 
-	// share the instance across
-	_instance = instance;
+  options = parseOptions(options);
+  var container = _instance.container;
 
-	options = parseOptions(options);
-	var container = _instance.container;
+  options.containerClass.unshift("toasted-container");
 
-	options.containerClass.unshift('toasted-container');
+  // check if the container classes has changed if so update it
+  if (container.className !== options.containerClass.join(" ")) {
+    container.className = "";
+    options.containerClass.forEach(function (className) {
+      container.classList.add(className);
+    });
+  }
 
-	// check if the container classes has changed if so update it
-	if (container.className !== options.containerClass.join(' ')) {
-		container.className = "";
-		options.containerClass.forEach(function (className) {
-			container.classList.add(className);
-		});
-	}
+  // Select and append toast
+  var newToast = createToast(message, options);
 
-	// Select and append toast
-	var newToast = createToast(message, options);
+  // only append toast if message is not undefined
+  if (message) {
+    container.appendChild(newToast);
+  }
 
-	// only append toast if message is not undefined
-	if (message) {
-		container.appendChild(newToast);
-	}
+  newToast.style.opacity = 0;
 
-	newToast.style.opacity = 0;
+  // Animate toast in
+  __WEBPACK_IMPORTED_MODULE_1__animations__["a" /* default */].animateIn(newToast);
 
-	// Animate toast in
-	__WEBPACK_IMPORTED_MODULE_1__animations__["a" /* default */].animateIn(newToast);
+  // Allows timer to be pause while being panned
+  var timeLeft = options.duration;
+  var counterInterval = void 0;
+  if (timeLeft !== null) {
+    var createInterval = function createInterval() {
+      return setInterval(function () {
+        if (newToast.parentNode === null) window.clearInterval(counterInterval);
 
-	// Allows timer to be pause while being panned
-	var timeLeft = options.duration;
-	var counterInterval = void 0;
-	if (timeLeft !== null) {
+        // If toast is not being dragged, decrease its time remaining
+        if (!newToast.classList.contains("panning")) {
+          timeLeft -= 20;
+        }
 
-		var createInterval = function createInterval() {
-			return setInterval(function () {
-				if (newToast.parentNode === null) window.clearInterval(counterInterval);
+        if (timeLeft <= 0) {
+          // Animate toast out
 
-				// If toast is not being dragged, decrease its time remaining
-				if (!newToast.classList.contains('panning')) {
-					timeLeft -= 20;
-				}
+          __WEBPACK_IMPORTED_MODULE_1__animations__["a" /* default */].animateOut(newToast, function () {
+            // Call the optional callback
+            if (typeof options.onComplete === "function") options.onComplete();
+            // Remove toast after it times out
+            if (newToast.parentNode) {
+              _instance.remove(newToast);
+            }
+          });
 
-				if (timeLeft <= 0) {
-					// Animate toast out
+          window.clearInterval(counterInterval);
+        }
+      }, 20);
+    };
 
-					__WEBPACK_IMPORTED_MODULE_1__animations__["a" /* default */].animateOut(newToast, function () {
-						// Call the optional callback
-						if (typeof options.onComplete === "function") options.onComplete();
-						// Remove toast after it times out
-						if (newToast.parentNode) {
-							_instance.remove(newToast);
-						}
-					});
+    counterInterval = createInterval();
 
-					window.clearInterval(counterInterval);
-				}
-			}, 20);
-		};
+    // Toggle interval on hover
+    if (options.keepOnHover) {
+      newToast.addEventListener("mouseover", function () {
+        window.clearInterval(counterInterval);
+      });
+      newToast.addEventListener("mouseout", function () {
+        counterInterval = createInterval();
+      });
+    }
+  }
 
-		counterInterval = createInterval();
-
-		// Toggle interval on hover
-		if (options.keepOnHover) {
-			newToast.addEventListener('mouseover', function () {
-				window.clearInterval(counterInterval);
-			});
-			newToast.addEventListener('mouseout', function () {
-				counterInterval = createInterval();
-			});
-		}
-	}
-
-	return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__object__["a" /* toastObject */])(newToast, _instance);
-});;
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__object__["a" /* toastObject */])(newToast, _instance);
+});
 
 /***/ }),
 /* 8 */

@@ -1,5 +1,5 @@
 @import "mixins";
-@import "themes";
+
 
 .toasted-container {
   // fix for min-height bug in IE
@@ -55,11 +55,13 @@
   }
 
   // fix positioning floating
-  &.top-left .toasted, &.bottom-left .toasted {
+  &.top-left .toasted,
+  &.bottom-left .toasted {
     float: left;
   }
 
-  &.top-right .toasted, &.bottom-right .toasted {
+  &.top-right .toasted,
+  &.bottom-right .toasted {
     float: right;
   }
 
@@ -78,7 +80,12 @@
     justify-content: space-between;
     box-sizing: inherit;
 
-    .material-icons, .fa, .fas, .far, .fab, .mdi {
+    .material-icons,
+    .fa,
+    .fas,
+    .far,
+    .fab,
+    .mdi {
       margin-right: .5rem;
       margin-left: -.4rem;
 
@@ -106,7 +113,9 @@
         align-items: center;
         justify-content: center;
 
-        .material-icons, .fa, .mdi {
+        .material-icons,
+        .fa,
+        .mdi {
           margin-right: 0;
           margin-left: 4px;
         }
@@ -127,11 +136,15 @@
   .toasted-container {
     @include fit-to-screen;
 
-    &.top-center, &.bottom-center {
+    &.top-center,
+    &.bottom-center {
       align-items: stretch !important;
     }
 
-    &.top-right, &.top-left, &.bottom-left, &.bottom-right {
+    &.top-right,
+    &.top-left,
+    &.bottom-left,
+    &.bottom-right {
       .toasted {
         float: none;
       }
